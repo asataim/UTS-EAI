@@ -34,6 +34,8 @@ class ProductController extends Controller
         ]);
 
         $imagePath = $request->file('image')->store('products', 'public');
+        \Log::info('Image path: ' . $imagePath);
+        \Log::info('Full path: ' . storage_path('app/public/' . $imagePath));
 
         Product::create([
             'name' => $request->name,
