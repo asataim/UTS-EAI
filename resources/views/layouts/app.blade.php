@@ -46,6 +46,9 @@
                                 <a href="{{ route('admin.dashboard') }}" class="text-gray-300 hover:text-custom-red px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">
                                     Dashboard
                                 </a>
+                                <a href="{{ route('admin.orders.index') }}" class="text-gray-300 hover:text-custom-red px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">
+                                    Orders
+                                </a>
                             @else
                                 <a href="{{ route('user.dashboard') }}" class="text-gray-300 hover:text-custom-red px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">
                                     Products
