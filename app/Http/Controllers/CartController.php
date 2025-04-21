@@ -23,6 +23,10 @@ class CartController extends Controller
 
     public function add(Product $product)
     {
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found!');
+        }
+
         // Pastikan harga yang ditambahkan ke cart sesuai dengan harga produk
         Cart::add([
             'id' => $product->id,
@@ -31,7 +35,7 @@ class CartController extends Controller
             'price' => (float)$product->price,
             'weight' => 0,
             'options' => [
-                'image' => $product->image,
+                'image' => $product->image ?? 'default.jpg',
             ]
         ]);
 
@@ -46,21 +50,31 @@ class CartController extends Controller
 
         // Pastikan harga tetap konsisten saat update quantity
         $item = Cart::get($rowId);
-        if ($item) {
-            $product = Product::find($item->id);
-            if ($product) {
-                Cart::update($rowId, [
-                    'qty' => $request->quantity,
-                    'price' => (float)$product->price
-                ]);
-            }
+        if (!$item) {
+            return redirect()->back()->with('error', 'Item not found in cart!');
         }
+
+        $product = Product::find($item->id);
+        if (!$product) {
+            Cart::remove($rowId);
+            return redirect()->back()->with('error', 'Product no longer exists!');
+        }
+
+        Cart::update($rowId, [
+            'qty' => $request->quantity,
+            'price' => (float)$product->price
+        ]);
 
         return redirect()->back()->with('success', 'Cart updated successfully!');
     }
 
     public function remove($rowId)
     {
+        $item = Cart::get($rowId);
+        if (!$item) {
+            return redirect()->back()->with('error', 'Item not found in cart!');
+        }
+
         Cart::remove($rowId);
         return redirect()->back()->with('success', 'Product removed from cart successfully!');
     }

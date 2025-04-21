@@ -47,3 +47,6 @@ Route::get('/', function () {
 Route::get('/produk', function () {
     return view('products');
 });
+
+// Prelogin route
+Route::get('/', [App\Http\Controllers\Auth\PreloginController::class, 'index'])->name('prelogin');
