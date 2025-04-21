@@ -83,7 +83,7 @@
 
         <div class="mt-8 text-center">
             <a href="{{ route('prelogin') }}" class="text-gray-400 hover:text-gray-300">
-                ← Back to Home
+                ← Back  Home
             </a>
         </div>
     </div>
