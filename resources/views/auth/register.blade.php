@@ -63,6 +63,16 @@
                             class="mt-1 block w-full bg-gray-700 border-gray-600 rounded-md shadow-sm focus:ring-custom-red focus:border-custom-red text-gray-300">
                     </div>
 
+                    <div>
+                        <label for="role" class="block text-sm font-medium text-gray-300">Role</label>
+                        <select id="role" name="role" required
+                            class="mt-1 block w-full bg-gray-700 border-gray-600 rounded-md shadow-sm focus:ring-custom-red focus:border-custom-red text-gray-300">
+                            <option value="">Select a role</option>
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+
                     <button type="submit" class="w-full bg-custom-red text-white px-4 py-2 rounded hover:bg-red-700 transition-colors duration-300">
                         Create Account
                     </button>
